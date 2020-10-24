@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 class Node
 {
@@ -16,11 +16,11 @@ class List
 {
 	friend class intersection;
 public:
-	List();//¹¹Ôìº¯Êı
-	~List();//Îö¹¹º¯Êı
-	void insert(const int &temp);//ºó¶Ë²åÈë
-	int size();//Á´±í³¤¶È
-	void printList();//Êä³öÁ´±í
+	List();//æ„é€ å‡½æ•°
+	~List();//ææ„å‡½æ•°
+	void insert(const int &temp);//åç«¯æ’å…¥
+	int size();//é“¾è¡¨é•¿åº¦
+	void printList();//è¾“å‡ºé“¾è¡¨
 	
 protected:
 	Node* head;
@@ -31,10 +31,10 @@ protected:
 class intersection
 {
 public:
-	intersection();//¹¹Ôìº¯Êı
-	~intersection();//Îö¹¹º¯Êı
-	void printAnswer();//Êä³ö´ğ°¸
-	void getNumber(int& temp);//ÊäÈëÊı¾İÓëÊäÈë¼ì²â
+	intersection();//æ„é€ å‡½æ•°
+	~intersection();//ææ„å‡½æ•°
+	void printAnswer();//è¾“å‡ºç­”æ¡ˆ
+	void getNumber(int& temp);//è¾“å…¥æ•°æ®ä¸è¾“å…¥æ£€æµ‹
 private:
 	List* first;
 	List* second;

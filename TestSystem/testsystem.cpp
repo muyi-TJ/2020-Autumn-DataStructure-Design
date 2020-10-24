@@ -1,4 +1,4 @@
-#include "testsystem.h"
+ï»¿#include "testsystem.h"
 
 
 template<class v>
@@ -160,10 +160,10 @@ void unordered_map<v> ::printValue()
 
 TestSystem::TestSystem() :dataSystem(10000)
 {
-	cout << "×¼±¸½¨Á¢¿¼ÉúÐÅÏ¢¹ÜÀíÏµÍ³" << endl;
-	cout << "ÇëÊäÈë¿¼ÉúÈËÊý:" << endl;
+	cout << "å‡†å¤‡å»ºç«‹è€ƒç”Ÿä¿¡æ¯ç®¡ç†ç³»ç»Ÿ" << endl;
+	cout << "è¯·è¾“å…¥è€ƒç”Ÿäººæ•°:" << endl;
 	cin >> studentNumber;
-	cout << "Çë°´Ë³ÐòÊäÈë¿¼Éú¿¼ºÅ¡¢ÐÕÃû¡¢ÐÔ±ð¡¢ÄêÁä¡¢¿ÆÄ¿" << endl;
+	cout << "è¯·æŒ‰é¡ºåºè¾“å…¥è€ƒç”Ÿè€ƒå·ã€å§“åã€æ€§åˆ«ã€å¹´é¾„ã€ç§‘ç›®" << endl;
 	for (int i = 0; i < studentNumber; i++)
 	{
 		if (!insert())
@@ -171,45 +171,45 @@ TestSystem::TestSystem() :dataSystem(10000)
 			i--;
 		}
 	}
-	cout << "½¨Á¢³É¹¦" << endl;
+	cout << "å»ºç«‹æˆåŠŸ" << endl;
 }
 
 bool TestSystem::getCommend()
 {
 	int order = 0;
-	cout << "ÇëÊäÈëÒªÖ´ÐÐµÄ²Ù×÷:" << endl
-		<< "1.²åÈëÐÂ¿¼Éú 2.ÐÞ¸Ä¿¼ÉúÐÅÏ¢ 3.É¾³ý¿¼ÉúÐÅÏ¢ 4.²éÕÒ¿¼Éú 5.Í³¼Æ 0.½áÊø·ÃÎÊ" << endl;
+	cout << "è¯·è¾“å…¥è¦æ‰§è¡Œçš„æ“ä½œ:" << endl
+		<< "1.æ’å…¥æ–°è€ƒç”Ÿ 2.ä¿®æ”¹è€ƒç”Ÿä¿¡æ¯ 3.åˆ é™¤è€ƒç”Ÿä¿¡æ¯ 4.æŸ¥æ‰¾è€ƒç”Ÿ 5.ç»Ÿè®¡ 0.ç»“æŸè®¿é—®" << endl;
 	cin >> order;
 	switch (order)
 	{
 	case 0:
-		cout << "ÒÑÀë¿ª¿¼ÉúÏµÍ³" << endl;
+		cout << "å·²ç¦»å¼€è€ƒç”Ÿç³»ç»Ÿ" << endl;
 		return false;
 	case 1:
-		cout << "Çë°´Ë³ÐòÊäÈë¿¼Éú¿¼ºÅ¡¢ÐÕÃû¡¢ÐÔ±ð¡¢ÄêÁä¡¢¿ÆÄ¿" << endl;
+		cout << "è¯·æŒ‰é¡ºåºè¾“å…¥è€ƒç”Ÿè€ƒå·ã€å§“åã€æ€§åˆ«ã€å¹´é¾„ã€ç§‘ç›®" << endl;
 		if (insert())
 		{
 			studentNumber++;
 		}
 		return true;
 	case 2:
-		cout << "ÇëÊäÈëÏëÒªÐÞ¸ÄÐÅÏ¢µÄ¿¼ÉúºÅ" << endl;
+		cout << "è¯·è¾“å…¥æƒ³è¦ä¿®æ”¹ä¿¡æ¯çš„è€ƒç”Ÿå·" << endl;
 		change(); 
 		return true; 
 	case 3:
-		cout << "ÇëÊäÈëÏëÒªÉ¾³ýÐÅÏ¢µÄ¿¼ÉúºÅ" << endl;
+		cout << "è¯·è¾“å…¥æƒ³è¦åˆ é™¤ä¿¡æ¯çš„è€ƒç”Ÿå·" << endl;
 		remove(); 
 		return true; 
 	case 4:
-		cout << "ÇëÊäÈëÏëÒª²éÕÒµÄ¿¼ÉúºÅ" << endl; 
+		cout << "è¯·è¾“å…¥æƒ³è¦æŸ¥æ‰¾çš„è€ƒç”Ÿå·" << endl; 
 		find();
 		return true;
 	case 5:
-		cout << "ÒÑ¾­ÔÚÊý¾Ý¿âÄÚµÄ¿¼ÉúÎª:" << endl; 
+		cout << "å·²ç»åœ¨æ•°æ®åº“å†…çš„è€ƒç”Ÿä¸º:" << endl; 
 		printSystem();
 		return true; 
 	default:
-		cout << "ÇëÊäÈëÕýÈ·µÄÖ¸Áî!" << endl;	
+		cout << "è¯·è¾“å…¥æ­£ç¡®çš„æŒ‡ä»¤!" << endl;	
 		return true;	
 		break;
 	}
@@ -222,13 +222,13 @@ bool TestSystem::insert()
 	Student temp(testnumber, name, sex, age, subject);
 	if (dataSystem.find(testnumber))
 	{
-		cout << "²»ÔÊÐíÏàÍ¬¿¼ºÅ¿¼Éú´æÔÚ£¬²åÈëÊ§°Ü" << endl;
+		cout << "ä¸å…è®¸ç›¸åŒè€ƒå·è€ƒç”Ÿå­˜åœ¨ï¼Œæ’å…¥å¤±è´¥" << endl;
 		return false;
 	}
 	else
 	{
 		dataSystem.insert(testnumber, temp);
-		cout << "¿¼Éú²åÈë³É¹¦,²åÈëµÄ¿¼ÉúÐÅÏ¢Îª:" << temp;
+		cout << "è€ƒç”Ÿæ’å…¥æˆåŠŸ,æ’å…¥çš„è€ƒç”Ÿä¿¡æ¯ä¸º:" << temp;
 		return true;
 	}
 }
@@ -240,12 +240,12 @@ bool TestSystem::find()
 	auto temp = dataSystem.find(number);
 	if (temp)
 	{
-		cout << "ÒÑÕÒµ½¿¼Éú,¿¼ÉúÐÅÏ¢Îª:" << temp->getValue();
+		cout << "å·²æ‰¾åˆ°è€ƒç”Ÿ,è€ƒç”Ÿä¿¡æ¯ä¸º:" << temp->getValue();
 		return true;
 	}
 	else
 	{
-		cout << "Î´ÕÒµ½¿¼Éú,·µ»ØÉÏÒ»¼¶" << endl;
+		cout << "æœªæ‰¾åˆ°è€ƒç”Ÿ,è¿”å›žä¸Šä¸€çº§" << endl;
 		return false;
 	}
 }
@@ -256,35 +256,35 @@ bool TestSystem::change()
 	cin >> number;
 	if (dataSystem.find(number))
 	{
-		cout << "ÒÑÕÒµ½¿¼Éú,ÇëÊäÈëÐÞ¸ÄºóµÄÐÅÏ¢" << endl;
+		cout << "å·²æ‰¾åˆ°è€ƒç”Ÿ,è¯·è¾“å…¥ä¿®æ”¹åŽçš„ä¿¡æ¯" << endl;
 		string testnumber, name, sex, age, subject;
 		cin >> testnumber >> name >> sex >> age >> subject;
 		Student temp(testnumber, name, sex, age, subject);
 		if (testnumber == number)
 		{
 			dataSystem[number] = temp;
-			cout << "ÐÞ¸Ä³É¹¦,ÐÞ¸ÄºóµÄÐÅÏ¢Îª:" << temp;
+			cout << "ä¿®æ”¹æˆåŠŸ,ä¿®æ”¹åŽçš„ä¿¡æ¯ä¸º:" << temp;
 			return true;
 		}
 		else
 		{
 			if (dataSystem.find(testnumber))
 			{
-				cout << "²»ÔÊÐí³öÏÖÏàÍ¬¿¼ºÅ¿¼Éú£¬ÐÞ¸ÄÊ§°Ü" << endl;
+				cout << "ä¸å…è®¸å‡ºçŽ°ç›¸åŒè€ƒå·è€ƒç”Ÿï¼Œä¿®æ”¹å¤±è´¥" << endl;
 				return false;
 			}
 			else
 			{
 				dataSystem.remove(number);
 				dataSystem.insert(testnumber, temp);
-				cout << "ÐÞ¸Ä³É¹¦,ÐÞ¸ÄºóµÄÐÅÏ¢Îª:" << temp;
+				cout << "ä¿®æ”¹æˆåŠŸ,ä¿®æ”¹åŽçš„ä¿¡æ¯ä¸º:" << temp;
 				return true;
 			}
 		}
 	}
 	else
 	{
-		cout << "Î´ÕÒµ½ÏàÓ¦¿¼Éú£¬·µ»ØÉÏÒ»¼¶" << endl;
+		cout << "æœªæ‰¾åˆ°ç›¸åº”è€ƒç”Ÿï¼Œè¿”å›žä¸Šä¸€çº§" << endl;
 		return false;
 	}
 }
@@ -295,23 +295,23 @@ bool TestSystem::remove()
 	cin >> number;
 	if (auto temp = dataSystem.find(number))
 	{
-		cout << "É¾³ý³É¹¦£¬É¾³ýµÄÐÅÏ¢Îª" << temp->getValue();
+		cout << "åˆ é™¤æˆåŠŸï¼Œåˆ é™¤çš„ä¿¡æ¯ä¸º" << temp->getValue();
 		studentNumber--;
 		dataSystem.remove(number);
 		return true;
 	}
 	else
 	{
-		cout << "É¾³ýÊ§°Ü£¬Î´ÕÒµ½¶ÔÓ¦¿¼Éú" << endl;
+		cout << "åˆ é™¤å¤±è´¥ï¼Œæœªæ‰¾åˆ°å¯¹åº”è€ƒç”Ÿ" << endl;
 		return false;
 	}
 }
 
 void TestSystem::printSystem()
 {
-	cout << "¿¼ÉúºÅ	ÐÕÃû	ÐÔ±ð	ÄêÁä	¿ÆÄ¿" << endl;
+	cout << "è€ƒç”Ÿå·	å§“å	æ€§åˆ«	å¹´é¾„	ç§‘ç›®" << endl;
 	dataSystem.printValue();
-	cout << "¹²" << studentNumber << "Ãû¿¼Éú£¬ÒÑÈ«²¿ÏÔÊ¾" << endl;
+	cout << "å…±" << studentNumber << "åè€ƒç”Ÿï¼Œå·²å…¨éƒ¨æ˜¾ç¤º" << endl;
 }
 
 int main()
@@ -319,7 +319,7 @@ int main()
 	TestSystem TS;
 	while (TS.getCommend())
 	{
-		cout << "ÒÑÖ´ÐÐÒ»ÌõÃüÁî" << endl;
+		cout << "å·²æ‰§è¡Œä¸€æ¡å‘½ä»¤" << endl;
 	}
 	system("pause");
 	return 0;

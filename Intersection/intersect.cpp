@@ -1,4 +1,4 @@
-#include "intersect.h"
+ï»¿#include "intersect.h"
 #include <string>
 Node::Node(int val)
 {
@@ -23,7 +23,7 @@ List::~List()
 		delete ptr;
 	}
 	delete temp;	
-	cout << "ÒÑÎö¹¹" << endl;
+	cout << "å·²ææ„" << endl;
 }
 
 void List::insert(const int &temp)
@@ -51,7 +51,7 @@ void intersection::getNumber(int& temp)
 	{
 		if (!(elem >= '0'&&elem <= '9'))
 		{
-			cout << "ÊäÈëÌØÊâ·ûºÅ£¬ÒÑ½Ø¶Ï";
+			cout << "è¾“å…¥ç‰¹æ®Šç¬¦å·ï¼Œå·²æˆªæ–­";
 			temp = -1;
 			return;
 		}
@@ -77,7 +77,7 @@ intersection::intersection()
 	second = new List();
 	answer = new List();
 	int temp = 0;
-	cout << "ÇëÊäÈëÒ»ĞĞÉıĞòÅÅÁĞµÄÊı×Ö£¬ÒÔ-1½áÎ²"<<endl;
+	cout << "è¯·è¾“å…¥ä¸€è¡Œå‡åºæ’åˆ—çš„æ•°å­—ï¼Œä»¥-1ç»“å°¾"<<endl;
 	getNumber(temp);
 	while (temp != -1)
 	{
@@ -87,55 +87,55 @@ intersection::intersection()
 		}
 		else
 		{
-			cout << "ÇëÉıĞòÅÅÁĞ£¬ÒÑÌø¹ı·Ç·¨ÊäÈë" << endl;
+			cout << "è¯·å‡åºæ’åˆ—ï¼Œå·²è·³è¿‡éæ³•è¾“å…¥" << endl;
 		}
 		getNumber(temp);
-	}//ÍêÕû¶ÁÈ¡µÚÒ»¸öÁ´±í
-	cout << "¶ÁÈ¡µ½µÄµÚÒ»×éÁ´±íÎª£º";
+	}//å®Œæ•´è¯»å–ç¬¬ä¸€ä¸ªé“¾è¡¨
+	cout << "è¯»å–åˆ°çš„ç¬¬ä¸€ç»„é“¾è¡¨ä¸ºï¼š";
 	first->printList();
 	Node* presentptr=first->head;
-	presentptr = presentptr->next;//ÎŞÂÛÊÇ·ñÎª¿Õ£¬¶¼Ò»¶¨¿ÉÒÔÖ¸ÏòÏÂÒ»¸ö
-	cout << "ÇëÊäÈëÒ»ĞĞÉıĞòÅÅÁĞµÄÊı×Ö£¬ÒÔ-1½áÎ²" << endl;
+	presentptr = presentptr->next;//æ— è®ºæ˜¯å¦ä¸ºç©ºï¼Œéƒ½ä¸€å®šå¯ä»¥æŒ‡å‘ä¸‹ä¸€ä¸ª
+	cout << "è¯·è¾“å…¥ä¸€è¡Œå‡åºæ’åˆ—çš„æ•°å­—ï¼Œä»¥-1ç»“å°¾" << endl;
 	getNumber(temp);
 	while (temp != -1)
 	{
 		if (second->size() == 0 || (second->size() != 0 && second->present->value <= temp))
 		{
 			second->insert(temp);
-			if (presentptr != nullptr)//Ö»ÓĞ²»Îª¿Õ²ÅÄÜ½øĞĞÅĞ¶Ï
+			if (presentptr != nullptr)//åªæœ‰ä¸ä¸ºç©ºæ‰èƒ½è¿›è¡Œåˆ¤æ–­
 			{
 				if (presentptr->value == temp)
 				{
-					answer->insert(temp);//ÏàµÈÖ±½ÓµÃµ½´ğ°¸
-					presentptr = presentptr->next;//µ±Ç°ÖµµÈÓÚtemp£¬Ö¸ÏòÏÂÒ»¸ö
+					answer->insert(temp);//ç›¸ç­‰ç›´æ¥å¾—åˆ°ç­”æ¡ˆ
+					presentptr = presentptr->next;//å½“å‰å€¼ç­‰äºtempï¼ŒæŒ‡å‘ä¸‹ä¸€ä¸ª
 				}
 				else if (presentptr->value < temp)
 				{
 					while (presentptr != nullptr&&presentptr->value < temp)
 					{
-						presentptr = presentptr->next;//ÕÒµ½ÏÂÒ»¸ö´óÓÚµÈÓÚtempµÄÊı×Ö»ò¶Áµ½Î²¶Ë
+						presentptr = presentptr->next;//æ‰¾åˆ°ä¸‹ä¸€ä¸ªå¤§äºç­‰äºtempçš„æ•°å­—æˆ–è¯»åˆ°å°¾ç«¯
 					}
 					if (presentptr != nullptr&&presentptr->value == temp)
 					{
 						answer->insert(temp);
-						presentptr = presentptr->next;//Èç¹ûÏàµÈ£¬Ö´ĞĞÉÏ·½ÏàÍ¬´úÂë
+						presentptr = presentptr->next;//å¦‚æœç›¸ç­‰ï¼Œæ‰§è¡Œä¸Šæ–¹ç›¸åŒä»£ç 
 					}
-				}//´ËÊ±Ö»ÓĞ´óÓÚtempµÄ²»Ö´ĞĞÈÎºÎ²Ù×÷£¬Ö±½Ó¶ÁÈ¡ÏÂÒ»¸ötemp
+				}//æ­¤æ—¶åªæœ‰å¤§äºtempçš„ä¸æ‰§è¡Œä»»ä½•æ“ä½œï¼Œç›´æ¥è¯»å–ä¸‹ä¸€ä¸ªtemp
 			}
 		}
 		else
 		{
-			cout << "ÇëÉıĞòÅÅÁĞ£¬ÒÑÌø¹ı·Ç·¨ÊäÈë" << endl;
+			cout << "è¯·å‡åºæ’åˆ—ï¼Œå·²è·³è¿‡éæ³•è¾“å…¥" << endl;
 		}
 		getNumber(temp);
-	}//´ËÊ±ËùÓĞÁ´±í¾ù¶ÁÈ¡Íê±Ï
-	cout << "¶ÁÈ¡µ½µÄµÚ¶ş×éÁ´±íÎª£º";
+	}//æ­¤æ—¶æ‰€æœ‰é“¾è¡¨å‡è¯»å–å®Œæ¯•
+	cout << "è¯»å–åˆ°çš„ç¬¬äºŒç»„é“¾è¡¨ä¸ºï¼š";
 	second->printList();
 }
 
 void intersection::printAnswer()
 {
-	cout << "½»¼¯Á´±íÎª£º";
+	cout << "äº¤é›†é“¾è¡¨ä¸ºï¼š";
 	if (answer->size() == 0)
 	{
 		cout << "NULL" << endl;
@@ -144,7 +144,7 @@ void intersection::printAnswer()
 	{
 		answer->printList();
 	}
-	cout << "ÒÑÕÒµ½½»¼¯" << endl;
+	cout << "å·²æ‰¾åˆ°äº¤é›†" << endl;
 }
 
 intersection::~intersection()

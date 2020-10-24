@@ -1,4 +1,4 @@
-#include "bankservice.h"
+ï»¿#include "bankservice.h"
 
 template<class T>
 queue<T>::queue(int num)
@@ -21,7 +21,7 @@ void queue<T>::push(const T& elem)
 {
 	if (full())
 	{
-		cout << "¶ÓÁÐÒÑÂú£¬ÎÞ·¨ÈëÁÐ" << endl;
+		cout << "é˜Ÿåˆ—å·²æ»¡ï¼Œæ— æ³•å…¥åˆ—" << endl;
 		return;
 	}
 	else
@@ -40,7 +40,7 @@ T queue<T>::pop()
 {
 	if (empty())
 	{
-		cout << "¶ÓÁÐÎª¿Õ£¬ÎÞ·¨³öÁÐ" << endl;
+		cout << "é˜Ÿåˆ—ä¸ºç©ºï¼Œæ— æ³•å‡ºåˆ—" << endl;
 		return T();
 	}
 	else
@@ -75,7 +75,7 @@ int queue<T>::getSize()
 
 bankService::bankService(int number):odd(number),even(number),size(number)
 {
-	cout << "ÇëÊäÈëÅÅ¶ÓµÄÐòºÅ" << endl;
+	cout << "è¯·è¾“å…¥æŽ’é˜Ÿçš„åºå·" << endl;
 	int temp = 0;
 	for (int i = 0; i < number; i++)
 	{
@@ -85,7 +85,7 @@ bankService::bankService(int number):odd(number),even(number),size(number)
 		{
 			if (!isdigit(elem))
 			{
-				cout << "ÇëÊäÈëÊý×Ö" << endl;
+				cout << "è¯·è¾“å…¥æ•°å­—" << endl;
 				i--;
 				continue;
 			}
@@ -99,12 +99,12 @@ bankService::bankService(int number):odd(number),even(number),size(number)
 			even.push(temp);
 		}
 	}
-	cout << "ÊäÈëÍê±Ï" << endl;
+	cout << "è¾“å…¥å®Œæ¯•" << endl;
 }
 
 void bankService::serve()
 {
-	cout << "·þÎñÍê±ÏµÄË³ÐòÎª:" << endl;
+	cout << "æœåŠ¡å®Œæ¯•çš„é¡ºåºä¸º:" << endl;
 	while (!odd.empty() || !even.empty())
 	{
 		pop(false);
@@ -147,7 +147,7 @@ void bankService::pop(bool isEven)
 
 int main()
 {
-	cout << "ÇëÊäÈëÅÅ¶ÓÈËÊý" << endl;
+	cout << "è¯·è¾“å…¥æŽ’é˜Ÿäººæ•°" << endl;
 	int number = 0;
 	cin >> number;
 	bankService bank(number);
