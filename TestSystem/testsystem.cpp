@@ -76,7 +76,7 @@ int unordered_map<v>::hash(string key)
 	{
 		hashvalue += (hashvalue << 5) + elem;
 	}
-	return hashvalue % hashSize;
+	return abs(hashvalue % hashSize);
 }
 
 template<class v>
@@ -158,17 +158,26 @@ void unordered_map<v> ::printValue()
 
 
 
-TestSystem::TestSystem() :dataSystem(10000)
+TestSystem::TestSystem() :dataSystem(10099)
 {
 	cout << "准备建立考生信息管理系统" << endl;
 	cout << "请输入考生人数:" << endl;
 	cin >> studentNumber;
-	cout << "请按顺序输入考生考号、姓名、性别、年龄、科目" << endl;
-	for (int i = 0; i < studentNumber; i++)
+	if (studentNumber < 0)
 	{
-		if (!insert())
+		cout << "考生数目不得小于0，请重新建立" << endl;
+		system("pause");
+		exit(0);
+	}
+	if (studentNumber)
+	{
+		cout << "请按顺序输入考生考号、姓名、性别、年龄、科目" << endl;
+		for (int i = 0; i < studentNumber; i++)
 		{
-			i--;
+			if (!insert())
+			{
+				i--;
+			}
 		}
 	}
 	cout << "建立成功" << endl;
@@ -309,7 +318,7 @@ bool TestSystem::remove()
 
 void TestSystem::printSystem()
 {
-	cout << "考生号	姓名	性别	年龄	科目" << endl;
+	cout << "考生号		姓名	性别	年龄	科目" << endl;
 	dataSystem.printValue();
 	cout << "共" << studentNumber << "名考生，已全部显示" << endl;
 }
