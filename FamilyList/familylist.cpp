@@ -105,7 +105,7 @@ FamilyList::FamilyList()
 	root = new Member(name);
 	cout << "已建立家谱，继续操作" << endl;
 	cout << "请输入操作\n" << "1.完善家谱 2.查找家庭\n"
-		<< "3.添加子女 4.解散家庭\n" << "5.修改姓名 0.取消" << endl;
+		<< "3.添加子女 4.解散家庭\n" << "5.修改姓名 6.取消" << endl;
 }
 
 FamilyList::~FamilyList()
@@ -113,10 +113,40 @@ FamilyList::~FamilyList()
 	delete root;
 }
 
+void FamilyList::getNumber(int& temp)
+{
+	string checkIn;
+	cin >> checkIn;
+	if (checkIn.size() > 10)
+	{
+		cout << "输入的数字不合法" << endl;
+		temp = 0;
+		return;
+	}
+	for (auto elem : checkIn)
+	{
+		if (!(elem >= '0'&&elem <= '9'))
+		{
+			cout << "输入的数字不合法" << endl;
+			temp = 0;
+			return;
+		}
+	}
+	if (atoi(checkIn.c_str()) < INT_MAX)
+	{
+		temp = stoi(checkIn);
+	}
+	else
+	{
+		cout << "输入的数字过大" << endl;
+		temp = 0;
+	}
+}
+
 bool FamilyList::getOrder()
 {
 	int order = 0;
-	cin >> order;
+	getNumber(order);
 	string parent, child, prename, postname;
 	Member* p_parent;
 	switch (order)
@@ -154,7 +184,7 @@ bool FamilyList::getOrder()
 		cin >> prename >> postname;
 		changeName(prename, postname);
 		break;
-	case 0:
+	case 6:
 		cout << "访问家谱结束" << endl;
 		return false;
 	default:
@@ -177,12 +207,17 @@ void FamilyList::insert(string parent)
 		cout << "未找到姓名为" << parent << "的成员" << endl;
 		return;
 	}
+	if (p_parent->childnum > 0)
+	{
+		cout << "该成员的家庭已经完善，请使用添加子女功能" << endl;
+		return;
+	}
 	cout << "请输入子女人数：" << endl;
 	int childnum = 0;
-	cin >> childnum;
+	getNumber(childnum);
 	if (childnum == 0)
 	{
-		cout << "完善家庭时子女不得为空" << endl;
+		cout << "完善家庭时子女数目必须合法" << endl;
 		return;
 	}
 	p_parent->setChildnum(childnum);

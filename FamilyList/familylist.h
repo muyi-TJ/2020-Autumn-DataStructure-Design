@@ -52,6 +52,7 @@ private:
 			{
 				delete children[i];
 			}
+			childnum = 0;
 		}
 
 		void setChildnum(int size)
@@ -99,4 +100,5 @@ public:
 	void changeName(string preName, string postName);
 	bool getOrder();
 	bool sameName(const string& name);
+	void getNumber(int& temp);
 };
