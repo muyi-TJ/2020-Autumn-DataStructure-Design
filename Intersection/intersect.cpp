@@ -22,7 +22,7 @@ List::~List()
 		temp = temp->next;
 		delete ptr;
 	}
-	delete temp;	
+	delete temp;
 	cout << "已析构" << endl;
 }
 
@@ -47,17 +47,27 @@ void intersection::getNumber(int& temp)
 		temp = -1;
 		return;
 	}
+	if (checkIn.size() > 10)
+	{
+		temp = 0;
+		return;
+	}
 	for (auto elem : checkIn)
 	{
 		if (!(elem >= '0'&&elem <= '9'))
 		{
-			cout << "输入特殊符号，已截断";
-			temp = -1;
+			temp = 0;
 			return;
 		}
 	}
-
-	temp = stoi(checkIn);
+	if (atoi(checkIn.c_str()) < INT_MAX)
+	{
+		temp = stoi(checkIn);
+	}
+	else
+	{
+		temp = 0;
+	}
 }
 
 void List::printList()
@@ -77,29 +87,36 @@ intersection::intersection()
 	second = new List();
 	answer = new List();
 	int temp = 0;
-	cout << "请输入一行升序排列的数字，以-1结尾"<<endl;
+	cout << "请输入一行非降序排列的数字，以-1结尾" << endl;
 	getNumber(temp);
 	while (temp != -1)
 	{
-		if (first->size() == 0 || (first->size() != 0 && first->present->value <= temp))
+		if ((first->size() == 0 && temp != 0) || (first->size() != 0 && first->present->value <= temp))
 		{
 			first->insert(temp);
 		}
 		else
 		{
-			cout << "请升序排列，已跳过非法输入" << endl;
+			cout << "请非降序排列，已跳过非法输入" << endl;
 		}
 		getNumber(temp);
 	}//完整读取第一个链表
 	cout << "读取到的第一组链表为：";
-	first->printList();
-	Node* presentptr=first->head;
+	if (first->size())
+	{
+		first->printList();
+	}
+	else
+	{
+		cout << "NULL" << endl;
+	}
+	Node* presentptr = first->head;
 	presentptr = presentptr->next;//无论是否为空，都一定可以指向下一个
-	cout << "请输入一行升序排列的数字，以-1结尾" << endl;
+	cout << "请输入一行非降序排列的数字，以-1结尾" << endl;
 	getNumber(temp);
 	while (temp != -1)
 	{
-		if (second->size() == 0 || (second->size() != 0 && second->present->value <= temp))
+		if ((second->size() == 0 && temp != 0) || (second->size() != 0 && second->present->value <= temp))
 		{
 			second->insert(temp);
 			if (presentptr != nullptr)//只有不为空才能进行判断
@@ -125,12 +142,19 @@ intersection::intersection()
 		}
 		else
 		{
-			cout << "请升序排列，已跳过非法输入" << endl;
+			cout << "请非降序排列，已跳过非法输入" << endl;
 		}
 		getNumber(temp);
 	}//此时所有链表均读取完毕
 	cout << "读取到的第二组链表为：";
-	second->printList();
+	if (second->size())
+	{
+		second->printList();
+	}
+	else
+	{
+		cout << "NULL" << endl;
+	}
 }
 
 void intersection::printAnswer()
