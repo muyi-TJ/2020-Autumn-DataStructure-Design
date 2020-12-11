@@ -44,7 +44,7 @@ template <class T>
 T stack<T>::pop()
 {
 	return m_buffer[--m_element];
-	
+
 }
 
 template <class T>
@@ -277,13 +277,13 @@ int main()
 	int column = 0, row = 0;
 	cout << "先输入列长度，再输入行长度" << endl;
 	cin >> column >> row;
-	
-	while (column == 0 || row == 0)
+
+	if (column <= 0 || row <= 0)
 	{
-		cout << "列长度/行长度不能为0" << endl;
-		cin >> column >> row;
+		cout << "列长度/行长度不合法" << endl;
+		system("pause");
+		return 0;
 	}
-	//TODO:输入字符死循环
 	Maze maze(column, row);
 	maze.getOut();
 	system("pause");
