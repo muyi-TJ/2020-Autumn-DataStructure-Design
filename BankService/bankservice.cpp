@@ -73,22 +73,39 @@ int queue<T>::getSize()
 	return size;
 }
 
-bankService::bankService(int number):odd(number),even(number),size(number)
+bankService::bankService(int number) :odd(number), even(number), size(number)
 {
 	cout << "请输入排队的序号" << endl;
 	int temp = 0;
+	string temps;
+	bool isNumber = true;
 	for (int i = 0; i < number; i++)
 	{
-		cin >> temp;
-		string temps = to_string(temp);
+		cin >> temps;
+		isNumber = true;
 		for (auto elem : temps)
 		{
-			if (!isdigit(elem))
+			if (!(elem >= '0'&&elem <= '9'))
 			{
-				cout << "请输入数字" << endl;
+				cout << "请输入正整数" << endl;
 				i--;
-				continue;
+				isNumber = false;
+				break;
 			}
+		}
+		if (!isNumber)
+		{
+			continue;
+		}
+		if (atoi(temps.c_str()) < INT_MAX)
+		{
+			temp = stoi(temps);
+		}
+		else
+		{
+			i--;
+			cout << "请输入小于INT_MAX的整数" << endl;
+			continue;
 		}
 		if (temp % 2 == 1)
 		{
@@ -150,6 +167,12 @@ int main()
 	cout << "请输入排队人数" << endl;
 	int number = 0;
 	cin >> number;
+	if (number <= 0)
+	{
+		cout << "请输入合法的人数，使用服务失败" << endl;
+		system("pause");
+		return 0;
+	}
 	bankService bank(number);
 	bank.serve();
 	system("pause");
