@@ -1,5 +1,5 @@
 ﻿#include "cutwood.h"
-
+#include <string>
 template<class T>
 MinHeap<T>::MinHeap(int maxSize)
 {
@@ -126,12 +126,44 @@ void MinHeap<T>::up(int start)
 	buffer[child] = last;
 }
 
+void getNumber(int& temp)
+{
+	string checkIn;
+	cin >> checkIn;
+	if (checkIn.size() > 10)
+	{
+		temp = -1;
+		return;
+	}
+	for (auto elem : checkIn)
+	{
+		if (!(elem >= '0'&&elem <= '9'))
+		{
+			temp = -1;
+			return;
+		}
+	}
+	if (atoi(checkIn.c_str()) < INT_MAX)
+	{
+		temp = stoi(checkIn);
+	}
+	else
+	{
+		temp = -1;
+	}
+}
+
 
 int main()
 {
-	int size = 0;
+	int size = -1;
 	cout << "请输入需要的木头数量" << endl;
-	cin >> size;
+	getNumber(size);
+	while (size == -1 || size > 10000)
+	{
+		cout << "请输入正确的木头数量，为0-10000的正整数" << endl;
+		getNumber(size);
+	}
 	if (size == 0)
 	{
 		cout << "不需要木头，花费0元" << endl;
@@ -140,20 +172,21 @@ int main()
 	}
 	int* arr = new int[size];
 	cout << "请输入每块木头的长度" << endl;
-	int temp = 0;
 	for (int i = 0; i < size; i++)
 	{
-		cin >> temp;
-		if (temp == 0)
+		int temp = 0;
+		getNumber(temp);
+		if (temp <= 0)
 		{
-			cout << "输入错误，请输入大于0的整数" << endl;
-			system("pause");
-			return 0;
+			cout << "输入错误，请输入大于0小于INT_MAX的整数" << endl;
+			i--;
+			continue;
 		}
 		arr[i] = temp;
 	}
 	MinHeap<int> heap(arr, size);
-	int ans = 0, a = 0, b = 0;
+	long long ans = 0;
+	int a = 0, b = 0;
 	while (heap.elemNumber() != 1)
 	{
 		a = heap.pop();
