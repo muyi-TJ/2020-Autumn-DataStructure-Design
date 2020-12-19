@@ -132,6 +132,10 @@ void UnionFindSet<T>::unionElement(T a, T b)
 	{
 		temp = buffer[r1].weight + buffer[r2].weight;
 	}
+	else
+	{
+		return;
+	}
 	if (buffer[r1].weight < buffer[r2].weight)
 	{
 		buffer[r1].value = r2;
@@ -174,7 +178,10 @@ MinHeap<T>::MinHeap(T arr[], int num)
 	size = (num + 3)*1.25;
 	number = num;
 	buffer = new T[size];
-	memcpy(buffer, arr, sizeof(T) * num);
+	for (int i = 0; i < num; i++)
+	{
+		buffer[i] = arr[i];
+	}
 	int now = (num - 2) / 2;
 	while (now >= 0)
 	{
@@ -286,7 +293,7 @@ Edge::Edge(string a, string b, int number)
 	cost = number;
 }
 
-bool Edge::operator<(Edge right)
+bool Edge::operator<(const Edge &right)
 {
 	return this->cost<right.cost;
 }
@@ -333,6 +340,12 @@ electricity::electricity()
 	for (int i = 0; i < cityNumber; i++)
 	{
 		cin >> cities[i];
+		if (check->find(cities[i]))
+		{
+			cout << "请不要重名" << endl;
+			i--;
+			continue;
+		}
 		check->insert(cities[i]);
 	}
 	ufs = new UnionFindSet<string>(cityNumber, cities);
@@ -364,6 +377,16 @@ electricity::electricity()
 	}
 	heap = new MinHeap<Edge>(edges, edgeNumber);
 	cout << "输入完毕" << endl;
+}
+
+electricity::~electricity()
+{
+	delete[] cities;
+	delete check;
+	delete[] edges;
+	delete[] ans;
+	delete ufs;
+	delete heap;
 }
 
 void electricity::span()

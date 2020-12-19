@@ -121,7 +121,8 @@ public:
 	int cost = 0;
 	Edge(string a, string b, int number);
 	Edge() = default;
-	bool operator<(Edge right);
+	~Edge() = default;
+	bool operator<(const Edge &right);
 };
 
 class electricity
@@ -138,6 +139,7 @@ private:
 	void getNumber(int& temp);
 public:
 	electricity();
+	~electricity();
 	void span();
 	void printGraph();
 };
