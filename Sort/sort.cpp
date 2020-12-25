@@ -7,7 +7,8 @@ struct Data
 {
 	long long move = 0;//赋值、交换次数
 	long long cmp = 0;//比较次数
-}bubble,quick,selection,heap,insertion,shell,merge,radix;
+	long long time = 0;//用时
+}bubble, quick, selection, heap, insertion, shell, merge, radix;
 
 void generate(int arr[], int size)
 {
@@ -18,7 +19,7 @@ void generate(int arr[], int size)
 	}
 }
 
-void BubbleSort(int nums[],const int size)
+void BubbleSort(int nums[], const int size)
 {
 	bool changed = false;
 	for (int i = 0; i < size - 1; i++)
@@ -264,7 +265,7 @@ void MergeSort(int nums[], const int left, const int right)
 //时间复杂度 最差O(nlogn) 平均O(nlogn)
 //空间复杂度 O(n)
 
-void RadixSort(int nums[],const int size)
+void RadixSort(int nums[], const int size)
 {
 	int max = nums[0];
 	int i, j, k;
@@ -323,45 +324,61 @@ int main()
 	if (size <= 0)
 	{
 		cout << "请输入大于0的整数" << endl;
+		system("pause");
 		return 0;
 	}
 	int* randomArray = new int[size];
 	int* arrayToBeSorted = new int[size];
 	generate(randomArray, size);
-	memcpy(arrayToBeSorted, randomArray, size*sizeof(int));
-
+	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
+	long long start = clock();
 	BubbleSort(arrayToBeSorted, size);
+	bubble.time = clock() - start;
 	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
+	start = clock();
 	QuickSort(arrayToBeSorted, 0, size - 1);
+	quick.time = clock() - start;
 	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
-	SelectionSort(arrayToBeSorted, size);	
+	start = clock();
+	SelectionSort(arrayToBeSorted, size);
+	selection.time = clock() - start;
 	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
+	start = clock();
 	HeapSort(arrayToBeSorted, size);
+	heap.time = clock() - start;
 	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
+	start = clock();
 	InsertionSort(arrayToBeSorted, size);
+	insertion.time = clock() - start;
 	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
+	start = clock();
 	ShellSort(arrayToBeSorted, size);
+	shell.time = clock() - start;
 	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
+	start = clock();
 	MergeSort(arrayToBeSorted, 0, size - 1);
+	merge.time = clock() - start;
 	memcpy(arrayToBeSorted, randomArray, size * sizeof(int));
+	start = clock();
 	RadixSort(arrayToBeSorted, size);
+	radix.time = clock() - start;
 
 	cout << "对于冒泡排序，比较次数为" << bubble.cmp << "  交换次数为" << bubble.move
-		<< "  总体比较" << bubble.cmp + bubble.move << endl
+		<< "  总体时间" << bubble.time << "毫秒" << endl
 		<< "对于快速排序，比较次数为" << quick.cmp << "  交换次数为" << quick.move
-		<< "  总体比较" << quick.cmp + quick.move << endl
+		<< "  总体时间" << quick.time << "毫秒" << endl
 		<< "对于选择排序，比较次数为" << selection.cmp << "  交换次数为" << selection.move
-		<< "  总体比较" << selection.cmp + selection.move << endl
+		<< "  总体时间" << selection.time << "毫秒" << endl
 		<< "对于堆排序，比较次数为" << heap.cmp << "  赋值次数为" << heap.move
-		<< "  总体比较" << heap.cmp + heap.move << endl
+		<< "  总体时间" << heap.time << "毫秒" << endl
 		<< "对于插入排序，比较次数为" << insertion.cmp << "  赋值次数为" << insertion.move
-		<< "  总体比较" << insertion.cmp + insertion.move << endl
+		<< "  总体时间" << insertion.time << "毫秒" << endl
 		<< "对于希尔排序，比较次数为" << shell.cmp << "  赋值次数为" << shell.move
-		<< "  总体比较" << shell.cmp + shell.move << endl
+		<< "  总体时间" << shell.time << "毫秒" << endl
 		<< "对于归并排序，比较次数为" << merge.cmp << "  赋值次数为" << merge.move
-		<< "  总体比较" << merge.cmp + merge.move << endl
+		<< "  总体时间" << merge.time << "毫秒" << endl
 		<< "对于基数排序，比较次数为" << radix.cmp << "  赋值次数为" << radix.move
-		<< "  总体比较" << radix.cmp + radix.move << endl;
+		<< "  总体时间" << radix.time << "毫秒" << endl;
 
 	delete[] randomArray;
 	delete[] arrayToBeSorted;
