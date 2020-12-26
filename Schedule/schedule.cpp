@@ -54,7 +54,7 @@ v& unordered_map<v>:: operator [] (string key)
 		temp = hashnode + hash(key);
 		while (temp->next)
 		{
-			temp=temp->next;
+			temp = temp->next;
 		}
 		temp->next = new Node(key, v());
 		return temp->next->value;
@@ -117,7 +117,7 @@ T queue<T>::pop()
 }
 
 template<class T>
-T queue<T>::top()
+T queue<T>::front()
 {
 	if (number > 0)
 	{
@@ -139,9 +139,9 @@ bool queue<T>::full()
 }
 
 template<class T>
-int queue<T>::getSize()
+int queue<T>::getNumber()
 {
-	return size;
+	return number;
 }
 
 Course::~Course()
@@ -179,6 +179,11 @@ Term::Term()
 			termTable[i][j] = "无";
 		}
 	}
+}
+
+Term::~Term()
+{
+	delete[] buffer;
 }
 
 bool Term::addCourse(Course * c)
@@ -428,13 +433,13 @@ void Schedule::arrange()
 	bool isError = false;
 	while (term < 8)
 	{
-		if (checkReady.getSize() == 0)
+		if (checkReady.empty())
 		{
 			cout << "课程循环依赖！" << endl;
 			isError = true;
 			break;
 		}
-		auto course = checkReady.top();
+		auto course = checkReady.front();
 		if (singleTerm[term].addCourse(course))
 		{
 			checkReady.pop();
@@ -456,7 +461,7 @@ void Schedule::arrange()
 			}
 			if (i == 8)
 			{
-				cout << "排不开课" << endl;
+				cout << "无法排开课" << endl;
 				isError = true;
 				break;
 			}

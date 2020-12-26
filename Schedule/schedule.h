@@ -70,20 +70,18 @@ public:
 	~queue();
 	void push(const T& elem);
 	T pop();
-	T top();
-	int getSize();
+	T front();
+	int getNumber();
 	bool empty();
 	bool full();
 };
 
 class Course
 {
-	friend class Schedule;
 public:
 	Course() = default;
 	~Course();
 	void addNext(Course* ptr);
-
 	void delOut(queue<Course*>& q);
 	string m_number;
 	string m_name;
@@ -98,6 +96,7 @@ class Term
 {
 public:
 	Term();
+	~Term();
 	bool addCourse(Course* c);
 	bool isFull();
 	void arrange();
@@ -107,16 +106,16 @@ public:
 	Course** buffer = nullptr;
 	string termTable[5][10];
 	bool isAvaiavle[5][4];
-	
+
 };
 
 class Schedule
 {
 public:
-	Schedule(int classnum) :courses(classnum),checkReady(classnum){};
+	Schedule(int classnum) :courses(classnum), checkReady(classnum) {};
 	Term singleTerm[8];
 	unordered_map<Course> courses;
 	queue<Course*> checkReady;
 	void arrange();
-	
+
 };
